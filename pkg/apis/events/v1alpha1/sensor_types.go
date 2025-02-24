@@ -632,6 +632,9 @@ type NATSTrigger struct {
 	// TLS configuration for the NATS producer.
 	// +optional
 	TLS *TLSConfig `json:"tls,omitempty" protobuf:"bytes,5,opt,name=tls"`
+	// AuthInformation
+	// +optional
+	Auth *NATSAuth `json:"auth,omitempty" protobuf:"bytes,6,opt,name=auth"`
 }
 
 // CustomTrigger refers to the specification of the custom trigger.
@@ -1052,7 +1055,7 @@ type EventContext struct {
 }
 
 func (e EventContext) String() string {
-	return fmt.Sprintf(`{"id:" "%s", "source": "%s", "specversion": "%s", "type": "%s", "datacontenttype": "%s", "subject": "%s", "time": "%s"}`, e.ID, e.Source, e.SpecVersion, e.Type, e.DataContentType, e.Subject, e.Time)
+	return fmt.Sprintf(`{"id": "%s", "source": "%s", "specversion": "%s", "type": "%s", "datacontenttype": "%s", "subject": "%s", "time": "%s"}`, e.ID, e.Source, e.SpecVersion, e.Type, e.DataContentType, e.Subject, e.Time)
 }
 
 // HasLocation whether or not an artifact has a location defined
